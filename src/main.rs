@@ -1,3 +1,13 @@
+use std::process;
+
 fn main() {
-    println!("Hello, world!");
+    let path = get_path().unwrap_or_else(|err| {
+        println!("{}", err);
+        process::exit(1);
+    });
+
+    let contents = get_contents(&path).unwrap_or_else(|err| {
+        println!("{}", err);
+        process::exit(1);
+    });
 }
